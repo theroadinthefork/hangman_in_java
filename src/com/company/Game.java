@@ -4,9 +4,10 @@ import java.util.*;
 
 public class Game {
     static int numbGuesses;
+    static Scanner scanner = new Scanner(System.in);
 
     static void setDifficulty() {
-        Scanner scanner = new Scanner(System.in);
+//        Scanner scanner = new Scanner(System.in);
         String input = "";
 
         // Set difficulty
@@ -31,26 +32,71 @@ public class Game {
         System.out.printf(Content.showDifficultyToNumbGuesses, difficultyMap.get(input), numbGuesses);
     }
 
-    static void guessesLeft() {
+    static int guessesLeft() {
         if (numbGuesses == 0) {
+            System.out.println(Content.showOutOfGuesses);
+            System.out.println(Content.gameOver);
             resetGame();
         }
-        System.out.printf(Content.showGuessesLeft, numbGuesses);
+        return numbGuesses;
     }
 
     static void evaluateGuess(String input) {
+        //Check if they guessed the word
+        if (input.equals(Word.secretWord)) {
+            System.out.println(Content.endGame);
+            for (char l : Word.secretWord.toCharArray()) {
+                System.out.print(" " + l + " ");
+            }
+            System.out.println("\n");
+            numbGuesses = 0;
+            System.out.println(Content.gameOver);
+            return;
+        }
+
+        //Check if they guessed a letter
         if (Word.guessedLettersMap.get(input) == null) {
             numbGuesses -= 1;
+            System.out.printf(Content.showWrongGuess, input);
+        } else if (Word.guessedLettersMap.get(input)) {
+            System.out.printf(Content.showAlreadyGuessed, input);
+        } else {
+            System.out.printf(Content.showCorrectGuess, input);
+            Word.guessedLettersMap.put(input, true);
         }
-        guessesLeft();
-    }
-
-    static void play() {
-        guessesLeft();
-        System.out.println(Content.askForGuess);
     }
 
     static void resetGame(){
-        System.out.println(Content.askForNewGame);
+        String choice = "";
+        while (!choice.equals("y") && !choice.equals("n")) {
+            System.out.println(Content.askForNewGame);
+            choice = scanner.nextLine().toLowerCase();
+        }
+        if (choice.equals("y")) {
+            setupNewGame();
+            play();
+        } else {
+            System.out.println(Content.bye);
+        }
+    }
+
+    static void setupNewGame() {
+        System.out.println(Content.startGame);
+        Game.setDifficulty();
+        Word.generate();
+        System.out.printf(Content.showWordLength, Word.secretWord.length());
+    }
+
+    // Gameplay
+    static void play() {
+        while (numbGuesses != 0) {
+            System.out.printf(Content.showGuessesLeft, guessesLeft());
+            Word.printGuessedLetters(Word.secretWord);
+            System.out.print(Content.askForGuess);
+            String guess = scanner.nextLine().toLowerCase();
+            evaluateGuess(guess);
+        }
+
+        resetGame();
     }
 }

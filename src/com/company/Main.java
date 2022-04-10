@@ -12,9 +12,9 @@ public class Main {
         System.out.println(Word.secretWord);
         System.out.printf(Content.showWordLength, Word.secretWord.length());
 
-        // Ask for guess
-        Word.printGuessedLetters(Word.secretWord);
-        System.out.println(Content.askForGuess);
+        // Start gameplay
+        Game.play();
+
 
     }
 }
