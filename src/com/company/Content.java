@@ -10,10 +10,13 @@ public class Content {
     static String askForGuess = "Type a letter or word and then hit [enter] to make your guess: ";
     static String showCorrectGuess = "\nGood guess! Letter %s is part of the word.\n";
     static String showWrongGuess = "\nToo bad! No letter %s.\n";
+    static String wrongWord = "\nNope, that's not the word.\n";
+    static String invalidCharacter = "\nPlease only enter a Roman alphabetic letter.\n";
     static String showAlreadyGuessed = "\nSilly! You've already guessed this letter.\n";
-    static String endGame = "\nGreat job! You've guessed the word!\n\n";
+    static String endGame = "\nCongrats! You've guessed the word!\n\n";
     static String showOutOfGuesses = "\nSorry, you're out of guesses.\n";
-    static String gameOver = "*** GAME OVER ***\n\n";
+    static String showSecretWord = "\nThe word you were guessing was: %s\n";
+    static String gameOver = "*** GAME OVER ***\n";
     static String askForNewGame = "Would you like to start over? y/n: ";
     static String bye = "Thanks for playing! Bye.\n";
 
