@@ -8,8 +8,11 @@ import java.util.stream.Stream;
 
 public class Word {
 
+    static String secretWord = "";
+    static List<String> guessedLetters;
+
     static String generate() {
-        String line = "";
+
         try {
                 // Check words.txt file length
                 Path path = Paths.get("words.txt");
@@ -17,16 +20,25 @@ public class Word {
 
                 // Get random word where at the character count is at least 3
 
-                while (line.length() < 3) {
+                while (secretWord.length() < 3) {
                     Random random = new Random();
                     int lineNumber = random.nextInt((int)totalLines);
 
                     Stream<String> lines = Files.lines(path);
-                    line = lines.skip(lineNumber).findFirst().get();
+                    secretWord = lines.skip(lineNumber).findFirst().get();
                 }
             } catch (IOException ex) {
             ex.printStackTrace();
         }
-        return line;
+        String[] letters = secretWord.split("");
+        guessedLetters = new ArrayList<>(Arrays.asList(letters));
+        return secretWord;
     }
+
+    static void printPlaceholders(String word){
+        for(String s: guessedLetters){
+            System.out.print(" _ ");
+        }
+    }
+
 }

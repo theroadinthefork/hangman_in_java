@@ -9,11 +9,16 @@ public class Main {
 
         // Game start
         System.out.println(Content.startGame);
-
         Game.setDifficulty();
 
         // Generate random word
-        System.out.println(Word.generate());
+        Word.generate();
+        System.out.println(Word.secretWord);
+        System.out.printf(Content.showWordLength, Word.secretWord.length());
 
+        // Ask for guess
+        System.out.printf(Content.showGuessesLeft, Game.guessesLeft());
+//        System.out.println(Content.askForGuess);
+        Word.printPlaceholders(Word.secretWord);
     }
 }
