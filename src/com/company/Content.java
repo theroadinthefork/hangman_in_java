@@ -8,4 +8,5 @@ public class Content {
     static String showWordLength = "The word you're guessing contains %s characters.\n";
     static String showGuessesLeft = "You have %s guesses remaining.\n";
     static String askForGuess = "Type a letter or word and then hit [enter] to make your guess:";
+    static String askForNewGame = "*** GAME OVER ***\n\n Would you like to start over?";
 }

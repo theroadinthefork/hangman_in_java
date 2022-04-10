@@ -1,9 +1,5 @@
 package com.company;
 
-import java.io.*;
-import java.nio.file.*;
-import java.util.*;
-
 public class Main {
     public static void main(String[] args) {
 
@@ -17,8 +13,7 @@ public class Main {
         System.out.printf(Content.showWordLength, Word.secretWord.length());
 
         // Ask for guess
-        System.out.printf(Content.showGuessesLeft, Game.guessesLeft());
-        Word.printPlaceholders(Word.secretWord);
+        Word.printGuessedLetters(Word.secretWord);
         System.out.println(Content.askForGuess);
 
     }

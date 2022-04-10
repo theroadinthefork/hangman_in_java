@@ -1,7 +1,5 @@
 package com.company;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
@@ -13,6 +11,8 @@ public class Word {
 //    static List<String> guessedLetters;
     static HashMap<String, Boolean> guessedLettersMap = new HashMap<>();
 
+
+    // Get a random word from file and set it as the secret word
     static String generate() {
 
         try {
@@ -42,10 +42,10 @@ public class Word {
         return secretWord;
     }
 
-    static void printPlaceholders(String word){
+    static void printGuessedLetters(String word){
         System.out.println("\n");
         for(char l: secretWord.toCharArray()){
-            if (guessedLettersMap.get(l)) {
+            if (guessedLettersMap.get(String.valueOf(l))) {
                 System.out.print(" " + l + " ");
             } else {
                 System.out.print(" _ ");

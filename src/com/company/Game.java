@@ -31,7 +31,26 @@ public class Game {
         System.out.printf(Content.showDifficultyToNumbGuesses, difficultyMap.get(input), numbGuesses);
     }
 
-    static int guessesLeft() {
-        return numbGuesses;
+    static void guessesLeft() {
+        if (numbGuesses == 0) {
+            resetGame();
+        }
+        System.out.printf(Content.showGuessesLeft, numbGuesses);
+    }
+
+    static void evaluateGuess(String input) {
+        if (Word.guessedLettersMap.get(input) == null) {
+            numbGuesses -= 1;
+        }
+        guessesLeft();
+    }
+
+    static void play() {
+        guessesLeft();
+        System.out.println(Content.askForGuess);
+    }
+
+    static void resetGame(){
+        System.out.println(Content.askForNewGame);
     }
 }
