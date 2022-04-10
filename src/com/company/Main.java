@@ -18,7 +18,8 @@ public class Main {
 
         // Ask for guess
         System.out.printf(Content.showGuessesLeft, Game.guessesLeft());
-//        System.out.println(Content.askForGuess);
         Word.printPlaceholders(Word.secretWord);
+        System.out.println(Content.askForGuess);
+
     }
 }

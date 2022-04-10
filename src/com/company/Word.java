@@ -1,6 +1,7 @@
 package com.company;
 
-import java.io.File;
+import org.w3c.dom.ls.LSOutput;
+
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
@@ -9,7 +10,8 @@ import java.util.stream.Stream;
 public class Word {
 
     static String secretWord = "";
-    static List<String> guessedLetters;
+//    static List<String> guessedLetters;
+    static HashMap<String, Boolean> guessedLettersMap = new HashMap<>();
 
     static String generate() {
 
@@ -30,15 +32,26 @@ public class Word {
             } catch (IOException ex) {
             ex.printStackTrace();
         }
-        String[] letters = secretWord.split("");
-        guessedLetters = new ArrayList<>(Arrays.asList(letters));
+//        String[] letters = secretWord.split("");
+//        guessedLetters = new ArrayList<>(Arrays.asList(letters));
+
+        // Create map with guessed and not guessed letters
+        for (char l : secretWord.toCharArray()) {
+            guessedLettersMap.put(String.valueOf(l), false);
+        }
         return secretWord;
     }
 
     static void printPlaceholders(String word){
-        for(String s: guessedLetters){
-            System.out.print(" _ ");
+        System.out.println("\n");
+        for(char l: secretWord.toCharArray()){
+            if (guessedLettersMap.get(l)) {
+                System.out.print(" " + l + " ");
+            } else {
+                System.out.print(" _ ");
+            }
         }
+        System.out.println("\n");
     }
 
 }

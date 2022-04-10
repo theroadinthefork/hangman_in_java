@@ -30,8 +30,6 @@ public class Game {
         numbGuesses = numbGuessesMap.get(input);
         System.out.printf(Content.showDifficultyToNumbGuesses, difficultyMap.get(input), numbGuesses);
     }
-    
-
 
     static int guessesLeft() {
         return numbGuesses;
