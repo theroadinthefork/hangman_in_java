@@ -102,7 +102,7 @@ public class Game {
 
     // Gameplay
     static void play() {
-        while (numbGuesses != 0) {
+        while (numbGuesses > 0) {
             System.out.printf(Content.showGuessesLeft, numbGuesses);
             Word.printGuessedLetters(Word.secretWord);
 
