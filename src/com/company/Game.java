@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Game {
     static int numbGuesses;
-    static Boolean gameWon = false;
+    static Boolean gameWon;
     static Scanner scanner = new Scanner(System.in);
 
 

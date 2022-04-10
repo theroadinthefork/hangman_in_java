@@ -2,7 +2,7 @@ package com.company;
 
 public class Content {
 
-    static String startGame = "*** Let's play a game of HANGMAN! ***\n";
+    static String startGame = "*** Starting a game of HANGMAN! ***\n";
     static String askForDifficulty = "Choose a difficulty level and then hit [enter] key: [e]asy, [n]ormal, [h]ard, [o]racle: ";
     static String showDifficultyToNumbGuesses = "With %s difficulty, the number of guesses you'll have is %s. Let's start!\n\n";
     static String showWordLength = "The word you're guessing contains %s characters.\n";
@@ -17,7 +17,7 @@ public class Content {
     static String showOutOfGuesses = "\nSorry, you're out of guesses.";
     static String showSecretWord = "The word was:\n";
     static String gameOver = "*** GAME OVER ***\n";
-    static String askForNewGame = "Would you like to start over? y/n: ";
+    static String askForNewGame = "Would you like to start a new game? y/n: ";
     static String bye = "Thanks for playing! Bye.\n";
 
 }
