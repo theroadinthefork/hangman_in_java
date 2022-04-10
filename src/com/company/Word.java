@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 public class Word {
 
     static String secretWord = "";
-//    static List<String> guessedLetters;
     static HashMap<String, Boolean> guessedLettersMap = new HashMap<>();
 
 
@@ -54,4 +53,10 @@ public class Word {
         System.out.println("\n");
     }
 
+    static void printSecretWord() {
+        for (char l : secretWord.toCharArray()) {
+            System.out.print(" " + l + " ");
+        }
+        System.out.println("\n");
+    }
 }

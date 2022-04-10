@@ -35,10 +35,7 @@ public class Game {
 
     static void gameIsWon() {
         System.out.println(Content.endGame);
-        for (char l : Word.secretWord.toCharArray()) {
-            System.out.print(" " + l + " ");
-        }
-        System.out.println("\n");
+        Word.printSecretWord();
         numbGuesses = 0;
         gameWon = true;
     }
@@ -69,7 +66,7 @@ public class Game {
                 Word.guessedLettersMap.put(guess, true);
                 numbGuesses -= 1;
             }
-        } else {
+        } else if (guess.length() == 1){
             System.out.println(Content.invalidCharacter);
         }
 
@@ -95,8 +92,10 @@ public class Game {
 
     static void setupNewGame() {
         System.out.println(Content.startGame);
+        gameWon = false;
         Game.setDifficulty();
         Word.secretWord = "";
+        Word.guessedLettersMap.clear();
         Word.generate();
         System.out.printf(Content.showWordLength, Word.secretWord.length());
     }
@@ -114,8 +113,9 @@ public class Game {
         }
 
         if (!gameWon) {
-            System.out.print(Content.showOutOfGuesses);
-            System.out.printf(Content.showSecretWord, Word.secretWord);
+            System.out.println(Content.showOutOfGuesses);
+            System.out.println(Content.showSecretWord);
+            Word.printSecretWord();
         }
 
         System.out.println(Content.gameOver);
