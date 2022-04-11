@@ -6,19 +6,21 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        String gameMasterChoice;
+        String gameMasterSelection;
 
         do {
             System.out.println(Content.chooseGameMaster);
-            gameMasterChoice = scanner.nextLine().toLowerCase();
-        } while (!gameMasterChoice.matches("[enhi]"));
+            gameMasterSelection = scanner.nextLine().toLowerCase();
+        } while (!gameMasterSelection.matches("[enhi]"));
 
-        GameMaster gameMaster = new GameMaster(gameMasterChoice);
+        GameMaster gameMaster = new GameMaster(gameMasterSelection);
 
-        System.out.println(gameMaster.name + gameMaster.allowedGuesses);
+        System.out.println(gameMaster.secretWord);
+        System.out.println(Word.generate());
+        System.out.println(Word.generate());
+        System.out.println(gameMaster.secretWord);
 
-        Game.setupNewGame();
-        Game.play();
+
 
     }
 }

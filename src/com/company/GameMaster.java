@@ -3,13 +3,23 @@ package com.company;
 import java.util.*;
 
 public class GameMaster {
-    String name;
+    String name, secretWord;
     int allowedGuesses;
+    HashMap<String, Boolean> guessedLettersMap;
 
     GameMaster (String letter) {
-        this.name = setName(letter);
-        this.allowedGuesses = setAllowedGuesses(letter);
+        name = setName(letter);
+        allowedGuesses = setAllowedGuesses(letter);
+        secretWord = Word.generate();
+        guessedLettersMap = Word.mapGuessedLetters(secretWord);
+        introduce();
     }
+
+    void introduce () {
+        System.out.printf(Content.introduceGameMaster, name, allowedGuesses);
+        System.out.printf(Content.showWordLength, secretWord.length());
+    }
+
 
     String setName (String letter) {
         HashMap<String, String> difficultyMap = new HashMap<>();
