@@ -20,4 +20,6 @@ public class Content {
     static String askForNewGame = "Would you like to start a new game? y/n: ";
     static String bye = "Thanks for playing! Bye.\n";
 
+    static String chooseGameMaster = "Choose your Game Master and then hit [enter] key: [E]aston, [N]orman, [H]ardy, [I]mpi: ";
+
 }

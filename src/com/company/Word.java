@@ -19,7 +19,7 @@ public class Word {
                 Path path = Paths.get("words.txt");
                 long totalLines = Files.lines(path).count();
 
-                // Get random word where at the character count is at least 3
+                // Get random word where the character count is at least 3
 
                 while (secretWord.length() < 3) {
                     Random random = new Random();
@@ -31,8 +31,6 @@ public class Word {
             } catch (IOException ex) {
             ex.printStackTrace();
         }
-//        String[] letters = secretWord.split("");
-//        guessedLetters = new ArrayList<>(Arrays.asList(letters));
 
         // Create map with guessed and not guessed letters
         for (char l : secretWord.toCharArray()) {
