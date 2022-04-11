@@ -13,6 +13,7 @@ public class GameMaster {
         secretWord = Word.generate();
         guessedLettersMap = Word.mapGuessedLetters(secretWord);
         introduce();
+        Game game = new Game(allowedGuesses);
     }
 
     void introduce () {

@@ -2,11 +2,17 @@ package com.company;
 
 import java.util.*;
 
-//public class Game {
-//    static int numbGuesses;
-//    static Boolean gameWon;
+public class Game {
+    int numbGuesses;
+    String currentState;
+    enum state {WON, LOST, INPLAY};
+    enum guessEvaluation {WRONG_WORD, WRONG_LETTER, RIGHT_LETTER, RIGHT_WORD, INVALID_CHARACTER, GUESSED_LETTER}
 //    static Scanner scanner = new Scanner(System.in);
 
+    Game (int numbGuesses) {
+        this.numbGuesses = numbGuesses;
+        this.currentState = String.valueOf(state.INPLAY);
+    }
 
 //    static void setDifficulty() {
 //        String input = "";
@@ -32,49 +38,45 @@ import java.util.*;
 //        numbGuesses = numbGuessesMap.get(input);
 //        System.out.printf(Content.showDifficultyToNumbGuesses, difficultyMap.get(input), numbGuesses);
 //    }
-//
-//    static void gameIsWon() {
-//        System.out.println(Content.endGame);
-////        Word.printSecretWord();
-//        numbGuesses = 0;
-//        gameWon = true;
-//    }
-//
-//    static void evaluateGuess(String guess) {
-//        //Check if they guessed the word
-//        if (guess.length() > 1) {
-//            if (guess.equals(Word.secretWord)) {
-//                gameIsWon();
-//                return;
-//            } else {
-//                System.out.println(Content.wrongWord);
-//                numbGuesses -= 1;
-//            }
-//        }
-//
-//        // Check if valid character
-//        if (guess.matches("[a-zA-Z]")) {
-//
-//            //Check if they guessed a letter
-//            if (Word.guessedLettersMap.get(guess) == null) {
-//                numbGuesses -= 1;
-//                System.out.printf(Content.showWrongGuess, guess);
-//            } else if (Word.guessedLettersMap.get(guess)) {
-//                System.out.printf(Content.showAlreadyGuessed, guess);
-//            } else {
-//                System.out.printf(Content.showCorrectGuess, guess);
-//                Word.guessedLettersMap.put(guess, true);
-//                numbGuesses -= 1;
-//            }
-//        } else if (guess.length() == 1){
-//            System.out.println(Content.invalidCharacter);
-//        }
-//
-//        //Check if all letters have been guessed
-//        if (!Word.guessedLettersMap.containsValue(false)) {
+
+    private String gameIsWon() {
+        this.numbGuesses = 0;
+        return this.currentState = String.valueOf(state.WON);
+    }
+
+
+    String evaluateGuess(String guess, String word, HashMap<String,Boolean> map) {
+        //Check if they guessed the word
+        if (guess.length() > 1) {
+            if (guess.equals(word)) {
+                return String.valueOf(guessEvaluation.RIGHT_WORD);
+            } else {
+                this.numbGuesses -= 1;
+                return String.valueOf(guessEvaluation.WRONG_WORD);
+            }
+        }
+
+        // Check if valid character
+        if (guess.matches("[a-zA-Z]")) {
+
+            //Check if they guessed a letter
+            if (map.get(guess) == null) {
+                this.numbGuesses -= 1;
+                return String.valueOf(guessEvaluation.WRONG_LETTER);
+            } else if (map.get(guess)) {
+                return String.valueOf(guessEvaluation.GUESSED_LETTER);
+            } else {
+                this.numbGuesses -= -1;
+                map.put(guess, true);
+                return String.valueOf(guessEvaluation.RIGHT_LETTER);
+            }
+        }
+        return String.valueOf(guessEvaluation.INVALID_CHARACTER);
+    }
+        //Check if all letters have been guessed
+//        if (!map.containsValue(false)) {
 //            gameIsWon();
 //        }
-//    }
 //
 //    static void resetGame(){
 //        String choice = "";
@@ -121,4 +123,4 @@ import java.util.*;
 //        System.out.println(Content.gameOver);
 //        resetGame();
 //    }
-//}
+}
