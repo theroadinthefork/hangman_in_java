@@ -8,12 +8,13 @@ public class Content {
     static String showWordLength = "I've picked a word and it contains %s characters.\n";
     static String showGuessesLeft = "You have %s guesses remaining.\n";
     static String askForGuess = "Type a letter or word and then hit [enter] to make your guess: ";
-    static String showCorrectGuess = "\nGood guess! Letter %s is part of the word.\n";
-    static String showWrongGuess = "\nToo bad! No letter %s.\n";
+    static String rightLetter = "\nGood guess! Letter %s is part of the word.\n";
+    static String rightWord = "\nCongrats! You've guessed the word!";
+    static String wrongLetter = "\nToo bad! No letter %s.\n";
     static String wrongWord = "\nNope, that's not the word.";
-    static String invalidCharacter = "\nPlease only enter a Roman alphabetic letter.";
-    static String showAlreadyGuessed = "\nSilly! You've already guessed this letter.\n";
-    static String endGame = "\nCongrats! You've guessed the word!\n\n";
+    static String invalidCharacter = "\nPlease only use Roman alphabetic letters.";
+    static String guessedLetter = "\nSilly! You've already guessed this letter.";
+
     static String showOutOfGuesses = "\nSorry, you're out of guesses.";
     static String showSecretWord = "The word was:\n";
     static String gameOver = "*** GAME OVER ***\n";

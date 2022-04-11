@@ -5,13 +5,13 @@ import java.util.*;
 public class Game {
     int numbGuesses;
     String currentState;
-    enum state {WON, LOST, INPLAY};
+    guessEvaluation guessState;
     enum guessEvaluation {WRONG_WORD, WRONG_LETTER, RIGHT_LETTER, RIGHT_WORD, INVALID_CHARACTER, GUESSED_LETTER}
 //    static Scanner scanner = new Scanner(System.in);
 
     Game (int numbGuesses) {
         this.numbGuesses = numbGuesses;
-        this.currentState = String.valueOf(state.INPLAY);
+        this.currentState = "INPLAY";
     }
 
 //    static void setDifficulty() {
@@ -39,40 +39,47 @@ public class Game {
 //        System.out.printf(Content.showDifficultyToNumbGuesses, difficultyMap.get(input), numbGuesses);
 //    }
 
-    private String gameIsWon() {
-        this.numbGuesses = 0;
-        return this.currentState = String.valueOf(state.WON);
-    }
-
-
-    String evaluateGuess(String guess, String word, HashMap<String,Boolean> map) {
+    guessEvaluation evaluateGuess(String guess, String word, HashMap<String,Boolean> map) {
         //Check if they guessed the word
         if (guess.length() > 1) {
             if (guess.equals(word)) {
-                return String.valueOf(guessEvaluation.RIGHT_WORD);
+                return guessEvaluation.RIGHT_WORD;
             } else {
-                this.numbGuesses -= 1;
-                return String.valueOf(guessEvaluation.WRONG_WORD);
+                return guessEvaluation.WRONG_WORD;
             }
         }
 
         // Check if valid character
         if (guess.matches("[a-zA-Z]")) {
-
             //Check if they guessed a letter
             if (map.get(guess) == null) {
-                this.numbGuesses -= 1;
-                return String.valueOf(guessEvaluation.WRONG_LETTER);
+                return guessEvaluation.WRONG_LETTER;
             } else if (map.get(guess)) {
-                return String.valueOf(guessEvaluation.GUESSED_LETTER);
+                return guessEvaluation.GUESSED_LETTER;
             } else {
-                this.numbGuesses -= -1;
                 map.put(guess, true);
-                return String.valueOf(guessEvaluation.RIGHT_LETTER);
+                return guessEvaluation.RIGHT_LETTER;
             }
         }
-        return String.valueOf(guessEvaluation.INVALID_CHARACTER);
+        return guessEvaluation.INVALID_CHARACTER;
     }
+
+    String evaluateState(guessEvaluation g) {
+        switch (g) {
+            case WRONG_LETTER:
+            case RIGHT_LETTER:
+            case WRONG_WORD:
+                this.numbGuesses -= 1;
+                break;
+            case RIGHT_WORD:
+                return this.currentState = "WON";
+        }
+        if (this.numbGuesses == 0 && this.currentState.equals("INPLAY")) {
+            return this.currentState = "LOST";
+        }
+        return this.currentState = "INPLAY";
+    }
+
         //Check if all letters have been guessed
 //        if (!map.containsValue(false)) {
 //            gameIsWon();

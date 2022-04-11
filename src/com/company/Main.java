@@ -15,13 +15,6 @@ public class Main {
 
         GameMaster gameMaster = new GameMaster(gameMasterSelection);
 
-        System.out.println(gameMaster.secretWord);
-        System.out.println(Word.generate());
-        System.out.println(Word.generate());
-        System.out.println(gameMaster.secretWord);
-        Word.printGuessedLetters(gameMaster.secretWord, gameMaster.guessedLettersMap);
-
-
     }
 
 }
