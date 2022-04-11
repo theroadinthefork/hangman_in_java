@@ -28,6 +28,10 @@ public class GameMaster {
         String guess;
 
         do {
+            // Show remaining guesses if game hasn't been won
+            if (!game.currentState.equals("WON")) {
+                System.out.printf(Content.showGuessesLeft, game.numbGuesses);
+            }
             Word.printGuessedLetters(this.secretWord, this.guessedLettersMap);
 
             System.out.println(Content.askForGuess);
@@ -40,7 +44,6 @@ public class GameMaster {
             // Update game state
             game.evaluateState(game.guessState);
 
-            System.out.printf(Content.showGuessesLeft, game.numbGuesses);
         } while (game.currentState.equals("INPLAY"));
 
 
@@ -88,10 +91,10 @@ public class GameMaster {
 
     int setAllowedGuesses (String letter) {
         HashMap<String, Integer> numbGuessesMap = new HashMap<>();
-        numbGuessesMap.put("e", 12);
-        numbGuessesMap.put("n", 10);
-        numbGuessesMap.put("h", 8);
-        numbGuessesMap.put("i", 1);
+        numbGuessesMap.put("e", 18);
+        numbGuessesMap.put("n", 14);
+        numbGuessesMap.put("h", 10);
+        numbGuessesMap.put("i", 3);
 
         return numbGuessesMap.get(letter);
     }
