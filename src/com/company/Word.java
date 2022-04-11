@@ -39,17 +39,17 @@ public class Word {
         return guessedLettersMap;
     }
 
-//    static void printGuessedLetters(String word){
-//        System.out.println("\n");
-//        for(char l: secretWord.toCharArray()){
-//            if (guessedLettersMap.get(String.valueOf(l))) {
-//                System.out.print(" " + l + " ");
-//            } else {
-//                System.out.print(" _ ");
-//            }
-//        }
-//        System.out.println("\n");
-//    }
+    static void printGuessedLetters(String word, HashMap<String, Boolean> map) {
+        System.out.println("\n");
+        for(char l: word.toCharArray()){
+            if (map.get(String.valueOf(l))) {
+                System.out.print(" " + l + " ");
+            } else {
+                System.out.print(" _ ");
+            }
+        }
+        System.out.println("\n");
+    }
 //
 //    static void printSecretWord() {
 //        for (char l : secretWord.toCharArray()) {

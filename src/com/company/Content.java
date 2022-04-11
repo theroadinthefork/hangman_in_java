@@ -21,6 +21,6 @@ public class Content {
     static String bye = "Thanks for playing! Bye.\n";
 
     static String chooseGameMaster = "Choose your Game Master and then hit [enter] key: [E]aston, [N]orman, [H]ardy, [I]mpi: ";
-    static String introduceGameMaster = "Hi, I'm %s and I'll be your Game Master. With me, you'll get %s tries to guess the word. Let's get started!";
+    static String introduceGameMaster = "Hi, I'm %s and I'll be your Game Master. With me, you'll get %s tries to guess the word. Let's get started!\n";
 
 }
