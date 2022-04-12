@@ -3,15 +3,31 @@ package com.company;
 import java.util.*;
 
 public class Game {
-    int numbGuesses;
-    String currentState;
-    guessEvaluation guessState;
+    private int numbGuesses;
+    private String currentState;
+    private guessEvaluation guessState;
     enum guessEvaluation {WRONG_WORD, WRONG_LETTER, RIGHT_LETTER, RIGHT_WORD, INVALID_CHARACTER, GUESSED_LETTER}
-//    static Scanner scanner = new Scanner(System.in);
+
 
     Game (int numbGuesses) {
         this.numbGuesses = numbGuesses;
         this.currentState = "INPLAY";
+    }
+
+    int getNumbGuesses() {
+        return this.numbGuesses;
+    }
+
+    String getCurrentState() {
+        return this.currentState;
+    }
+
+    guessEvaluation getGuessState() {
+        return this.guessState;
+    }
+
+    guessEvaluation setGuessState(guessEvaluation g) {
+        return this.guessState = g;
     }
 
 

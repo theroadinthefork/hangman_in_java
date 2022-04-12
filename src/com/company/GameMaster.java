@@ -7,6 +7,7 @@ public class GameMaster {
     int allowedGuesses;
     HashMap<String, Boolean> guessedLettersMap;
     Game game;
+    Scanner scanner = new Scanner(System.in);
 
     GameMaster (String letter) {
         name = setName(letter);
@@ -15,7 +16,7 @@ public class GameMaster {
         guessedLettersMap = Word.mapGuessedLetters(secretWord);
         introduce();
         game = new Game(allowedGuesses);
-        startGame();
+        hostGame();
     }
 
     void introduce () {
@@ -23,37 +24,53 @@ public class GameMaster {
         System.out.printf(Content.showWordLength, secretWord.length());
     }
 
-    void startGame() {
-        Scanner scanner = new Scanner(System.in);
-        String guess;
-
+    void hostGame() {
         do {
             // Show remaining guesses if game hasn't been won
-            if (!game.currentState.equals("WON")) {
-                System.out.printf(Content.showGuessesLeft, game.numbGuesses);
+            if (!game.getCurrentState().equals("WON")) {
+                System.out.printf(Content.showGuessesLeft, game.getNumbGuesses());
             }
+
             Word.printGuessedLetters(this.secretWord, this.guessedLettersMap);
 
             System.out.println(Content.askForGuess);
-            guess = scanner.nextLine().toLowerCase();
+            String guess = scanner.nextLine().toLowerCase();
 
             // Evaluate guess
-            game.guessState = game.evaluateGuess(guess, this.secretWord, this.guessedLettersMap);
-            giveHint(game.guessState, guess);
+            game.setGuessState(game.evaluateGuess(guess, this.secretWord, this.guessedLettersMap));
+            giveHint(game.getGuessState(), guess);
 
             // Update game state
-            game.evaluateState(game.guessState);
+            game.evaluateState(game.getGuessState());
 
-        } while (game.currentState.equals("INPLAY"));
+        } while (game.getCurrentState().equals("INPLAY"));
 
-
-        if (game.currentState.equals("LOST")) {
+        // Show user has lost
+        if (game.getCurrentState().equals("LOST")) {
             System.out.println(Content.showOutOfGuesses);
             System.out.println(Content.showSecretWord);
         }
         Word.printSecretWord(this.secretWord);
 
         System.out.println(Content.gameOver);
+
+        // Ask if user wants a new game
+        String input;
+        do {
+            System.out.println(Content.askForNewGame);
+            input = scanner.nextLine().toLowerCase();
+        } while (input.matches("[yn]"));
+
+        if (input.equals("y")) {
+            startNewGame();
+        } else {
+            System.out.println(Content.bye);
+        }
+
+    }
+
+    static void startNewGame () {
+
     }
 
     void giveHint(Game.guessEvaluation g, String guess) {
