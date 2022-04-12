@@ -72,6 +72,20 @@ public class Game {
         return this.currentState = "INPLAY";
     }
 
+    static void startNewGame () {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println(Content.startGame);
+
+        String gameMasterSelection;
+        do {
+            System.out.println(Content.chooseGameMaster);
+            gameMasterSelection = scanner.nextLine().toLowerCase();
+        } while (!gameMasterSelection.matches("[enhi]"));
+
+        Main.createGameMaster(gameMasterSelection);
+    }
+
         //Check if all letters have been guessed
 //        if (!map.containsValue(false)) {
 //            gameIsWon();

@@ -4,17 +4,11 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        Game.startNewGame();
+    }
 
-        Scanner scanner = new Scanner(System.in);
-        String gameMasterSelection;
-
-        do {
-            System.out.println(Content.chooseGameMaster);
-            gameMasterSelection = scanner.nextLine().toLowerCase();
-        } while (!gameMasterSelection.matches("[enhi]"));
-
+    static void createGameMaster (String gameMasterSelection) {
         GameMaster gameMaster = new GameMaster(gameMasterSelection);
-
     }
 
 }

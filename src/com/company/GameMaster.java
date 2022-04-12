@@ -59,19 +59,17 @@ public class GameMaster {
         do {
             System.out.println(Content.askForNewGame);
             input = scanner.nextLine().toLowerCase();
-        } while (input.matches("[yn]"));
+        } while (!input.matches("[yn]"));
 
         if (input.equals("y")) {
-            startNewGame();
+            Game.startNewGame();
         } else {
             System.out.println(Content.bye);
         }
 
     }
 
-    static void startNewGame () {
 
-    }
 
     void giveHint(Game.guessEvaluation g, String guess) {
         switch (g) {
