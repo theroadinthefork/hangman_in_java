@@ -86,54 +86,5 @@ public class Game {
         Main.createGameMaster(gameMasterSelection);
     }
 
-        //Check if all letters have been guessed
-//        if (!map.containsValue(false)) {
-//            gameIsWon();
-//        }
-//
-//    static void resetGame(){
-//        String choice = "";
-//        while (!choice.equals("y") && !choice.equals("n")) {
-//            System.out.println(Content.askForNewGame);
-//            choice = scanner.nextLine().toLowerCase();
-//        }
-//        if (choice.equals("y")) {
-//            setupNewGame();
-//            play();
-//        } else {
-//            System.out.println(Content.bye);
-//        }
-//    }
-//
-//    static void setupNewGame() {
-//        System.out.println(Content.startGame);
-//        gameWon = false;
-//        Game.setDifficulty();
-//        Word.secretWord = "";
-//        Word.guessedLettersMap.clear();
-//        Word.generate();
-//        System.out.printf(Content.showWordLength, Word.secretWord.length());
-//    }
-//
-//    // Gameplay
-//    static void play() {
-//        while (numbGuesses > 0) {
-//            System.out.printf(Content.showGuessesLeft, numbGuesses);
-//            Word.printGuessedLetters(Word.secretWord);
-//
-//            System.out.print(Content.askForGuess);
-//            String guess = scanner.nextLine().toLowerCase();
-//
-//            evaluateGuess(guess);
-//        }
-//
-//        if (!gameWon) {
-//            System.out.println(Content.showOutOfGuesses);
-//            System.out.println(Content.showSecretWord);
-//            Word.printSecretWord();
-//        }
-//
-//        System.out.println(Content.gameOver);
-//        resetGame();
-//    }
+
 }
